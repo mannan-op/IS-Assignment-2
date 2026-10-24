@@ -1,0 +1,13 @@
+<%- include('header', { title: 'ShopSmart — Products' }) %>
+<h1>Products</h1>
+<div class="grid">
+  <% products.forEach(function(p){ %>
+    <div class="card">
+      <h3><a href="/product/<%= p.id %>"><%= p.name %></a></h3>
+      <p class="muted"><%= p.description %></p>
+      <p class="price">$<%= p.price.toFixed(2) %></p>
+      <p class="muted">In stock: <%= p.stock %></p>
+    </div>
+  <% }) %>
+</div>
+<%- include('footer') %>

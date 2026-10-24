@@ -1,0 +1,20 @@
+<%- include('header', { title: 'Profile & Settings' }) %>
+<h1>Profile &amp; Settings</h1>
+<% if (notice) { %><p class="notice"><%= notice %></p><% } %>
+<p>Username: <strong><%= me.username %></strong></p>
+<p>Current email: <strong><%= me.email %></strong></p>
+
+<h2>Change email</h2>
+<form method="post" action="/account/change-email" class="stack">
+  <% if (!vuln) { %><input type="hidden" name="_csrf" value="<%= csrf %>" /><% } %>
+  <label>New email <input name="email" /></label>
+  <button type="submit">Update email</button>
+</form>
+
+<h2>Change password</h2>
+<form method="post" action="/account/change-password" class="stack">
+  <% if (!vuln) { %><input type="hidden" name="_csrf" value="<%= csrf %>" /><% } %>
+  <label>New password <input name="password" type="password" /></label>
+  <button type="submit">Update password</button>
+</form>
+<%- include('footer') %>

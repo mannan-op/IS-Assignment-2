@@ -1,0 +1,46 @@
+<%- include('header', { title: product.name }) %>
+<article class="product-detail">
+  <h1><%= product.name %></h1>
+  <p class="price">$<%= product.price.toFixed(2) %></p>
+  <p><%= product.description %></p>
+  <p class="muted">In stock: <%= product.stock %></p>
+</article>
+
+<!-- DOM-based XSS demo zone. Client JS reads location.hash and writes it here.
+     VULN mode uses innerHTML; SAFE mode uses textContent (see /js/dom.js). -->
+<section class="promo">
+  <h2>Today's note</h2>
+  <div id="promo" data-mode="<%= vuln ? 'vuln' : 'safe' %>">(set #hash in the URL)</div>
+</section>
+
+<section class="reviews">
+  <h2>Reviews (<%= reviews.length %>)</h2>
+  <% reviews.forEach(function(r){ %>
+    <div class="review">
+      <strong><%= r.author %></strong> — <%= r.rating %>★
+      <div class="review-body">
+        <% if (vuln) { %>
+          <!-- VULNERABLE: stored review rendered UNESCAPED -> stored XSS -->
+          <%- r.body %>
+        <% } else { %>
+          <!-- SAFE: escaped -->
+          <%= r.body %>
+        <% } %>
+      </div>
+    </div>
+  <% }) %>
+
+  <h3>Leave a review</h3>
+  <form method="post" action="/product/<%= product.id %>/review" class="stack">
+    <% if (!user) { %><label>Name <input name="author" /></label><% } %>
+    <label>Rating
+      <select name="rating">
+        <option>5</option><option>4</option><option>3</option><option>2</option><option>1</option>
+      </select>
+    </label>
+    <label>Review <textarea name="body" rows="3"></textarea></label>
+    <button type="submit">Submit review</button>
+  </form>
+</section>
+<script src="/js/dom.js"></script>
+<%- include('footer') %>

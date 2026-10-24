@@ -1,0 +1,8 @@
+<%- include('header', { title: 'Dashboard' }) %>
+<h1>Welcome, <%= me.username %><% if (me.is_admin) { %> <span class="badge">admin</span><% } %></h1>
+<p>Email on file: <strong><%= me.email %></strong></p>
+<ul>
+  <li><a href="/profile">Account settings</a></li>
+  <li><a href="/">Browse products</a></li>
+</ul>
+<%- include('footer') %>

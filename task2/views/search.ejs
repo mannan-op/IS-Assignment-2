@@ -1,0 +1,30 @@
+<%- include('header', { title: 'Search' }) %>
+<h1>Search results</h1>
+<% if (q) { %>
+  <% if (vuln) { %>
+    <!-- VULNERABLE: the search term is written into the page UNESCAPED -> reflected XSS -->
+    <p class="results-for">You searched for: <%- q %></p>
+  <% } else { %>
+    <!-- SAFE: EJS <%%= %> HTML-escapes the term -->
+    <p class="results-for">You searched for: <%= q %></p>
+  <% } %>
+<% } %>
+<% if (sqlShown) { %>
+  <pre class="sql">SQL: <%= sqlShown %></pre>
+<% } %>
+<% if (error) { %>
+  <pre class="sql error">DB error: <%= error %></pre>
+<% } %>
+<% if (products && products.length) { %>
+  <table class="data">
+    <thead><tr><th>Col 1</th><th>Col 2</th><th>Col 3</th></tr></thead>
+    <tbody>
+    <% products.forEach(function(r){ %>
+      <tr><td><%= r.id %></td><td><%= r.name %></td><td><%= r.price %></td></tr>
+    <% }) %>
+    </tbody>
+  </table>
+<% } else if (q) { %>
+  <p class="muted">No products matched.</p>
+<% } %>
+<%- include('footer') %>

@@ -1,0 +1,11 @@
+<%- include('header', { title: 'Login' }) %>
+<h1>Login</h1>
+<% if (error) { %><p class="alert"><%= error %></p><% } %>
+<form method="post" action="/login" class="stack">
+  <label>Username <input name="username" autocomplete="off" /></label>
+  <label>Password <input name="password" type="password" autocomplete="off" /></label>
+  <button type="submit">Log in</button>
+</form>
+<% if (sqlShown) { %><pre class="sql">SQL: <%= sqlShown %></pre><% } %>
+<p class="muted">Demo users: admin/admin123, alice/password1, bob/hunter2</p>
+<%- include('footer') %>

@@ -1,0 +1,20 @@
+{
+  "name": "infosec-a2-part2",
+  "version": "1.0.0",
+  "description": "ShopSmart — a deliberately vulnerable (and hardened) e-commerce demo for an Information Security practical. Toggle between VULNERABLE and SAFE modes to study XSS, CSRF and SQL injection.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:vuln": "VULN=true node app.js",
+    "start:safe": "VULN=false node app.js",
+    "seed": "node seed.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  }
+}

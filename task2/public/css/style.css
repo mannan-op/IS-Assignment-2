@@ -1,0 +1,32 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, Arial, sans-serif; color: #1c2330; background: #f4f6fb; }
+a { color: #2b59c3; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.topbar { display: flex; align-items: center; gap: 16px; padding: 12px 20px; background: #10203a; color: #fff; flex-wrap: wrap; }
+.topbar a { color: #fff; }
+.brand { font-weight: 700; font-size: 1.2rem; }
+.searchbar { display: flex; flex: 1; max-width: 420px; gap: 6px; }
+.searchbar input { flex: 1; padding: 7px 10px; border-radius: 6px; border: none; }
+.searchbar button, button { padding: 7px 14px; border: none; border-radius: 6px; background: #2b59c3; color: #fff; cursor: pointer; }
+nav { display: flex; gap: 14px; flex-wrap: wrap; }
+.mode-banner { padding: 8px 20px; font-size: .9rem; }
+.mode-banner.vuln { background: #ffe0e0; color: #8a1f1f; }
+.mode-banner.safe { background: #e1f6e6; color: #15692c; }
+.container { max-width: 980px; margin: 24px auto; padding: 0 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 16px; }
+.card { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.price { font-weight: 700; color: #15692c; }
+.muted { color: #6a7384; font-size: .9rem; }
+.stack { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
+.stack label { display: flex; flex-direction: column; gap: 4px; font-size: .9rem; }
+.stack input, .stack textarea, .stack select { padding: 8px; border: 1px solid #c6ccd8; border-radius: 6px; }
+.alert { background: #ffe0e0; color: #8a1f1f; padding: 10px; border-radius: 6px; }
+.notice { background: #e1f6e6; color: #15692c; padding: 10px; border-radius: 6px; }
+.badge { background: #2b59c3; color: #fff; border-radius: 4px; padding: 1px 6px; font-size: .75rem; }
+.sql { background: #11161f; color: #9fe6a0; padding: 10px; border-radius: 6px; overflow-x: auto; font-size: .85rem; }
+.sql.error { color: #ff9f9f; }
+table.data { width: 100%; border-collapse: collapse; background: #fff; }
+table.data th, table.data td { border: 1px solid #dfe3ec; padding: 8px; text-align: left; }
+.review { background: #fff; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+.promo { background: #fff; border-radius: 8px; padding: 12px; margin: 16px 0; }
+.site-footer { text-align: center; color: #6a7384; padding: 24px; font-size: .85rem; }
